@@ -54,17 +54,30 @@ instructions.addEventListener("click", function() {
 
 })
 
+//nuovo evento (submit dei numeri)
 answer_form.addEventListener("submit", function() {
     event.preventDefault() //evito il refresh della pagina
 
-
+    //creo nuovo array per salvere i numeri inseriti dall'utente
     const array = document.querySelectorAll(".form-control")
     const numbers_array = []
     for(let i=0; i<array.length; i++) { 
-    
         numbers_array.push(array[i].value)
     }
-
     
+    let indovinati = 0
+    for(i=0; i<pc_numbers.length; i++) {
+        let trovato = false
+        let j = 0
+        while (trovato == false && j<numbers_array.length) {
+            trovato = pc_numbers[i] == numbers_array[j]
+            j++
+        }
+        if(trovato==1) {
+            indovinati++        
+        }
+    }
+    console.log(indovinati);
     
+    answer_form.style.display = "none"
 })
