@@ -71,7 +71,7 @@ answer_form.addEventListener("submit", function() {
     console.log(`Hai indovinato ${guessed_Array.length} numeri: ${guessed_Array.join(', ')}`);
     
     if(guessed_Array.length==0) {
-        messageEl.innerHTML = "Non hai indovinato nessun numero CAZZONE" 
+        messageEl.innerHTML = "Non hai indovinato nessun numero" 
     }
     else {
         messageEl.textContent = `Hai indovinato ${guessed_Array.length} numero/i : ${guessed_Array.join(", ")}`
