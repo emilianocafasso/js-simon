@@ -21,7 +21,7 @@ const countdownEl = document.getElementById("countdown")
 const instructions = document.getElementById("instructions")
 const randomEl = document.getElementById("numbers-list")
 const answer_form = document.getElementById("answers-form")
-let counter = 3 
+const messageEl = document.getElementById("result-message") 
 
 const pc_numbers = [] //array per inserire i numeri generati random
 
@@ -64,20 +64,34 @@ answer_form.addEventListener("submit", function() {
     for(let i=0; i<array.length; i++) { 
         numbers_array.push(array[i].value)
     }
+    answer_form.style.display = "none"
+
+    //chiamo la funzione per comparare i due array
+    const guessed_Array = compareArrays(numbers_array, pc_numbers)
+    console.log(`Hai indovinato ${guessed_Array.length} numeri: ${guessed_Array.join(', ')}`);
     
-    let indovinati = 0
-    for(i=0; i<pc_numbers.length; i++) {
-        let trovato = false
-        let j = 0
-        while (trovato == false && j<numbers_array.length) {
-            trovato = pc_numbers[i] == numbers_array[j]
-            j++
-        }
-        if(trovato==1) {
-            indovinati++        
+    if(guessed_Array.length==0) {
+        messageEl.innerHTML = "Non hai indovinato nessun numero CAZZONE" 
+    }
+    else {
+        messageEl.textContent = `Hai indovinato ${guessed_Array.length} numero/i : ${guessed_Array.join(", ")}`
+    }
+    
+})
+
+//funzione per comparare due array
+function compareArrays(array1, array2) {
+    const result = []
+    for (i=0; i<array2.length; i++) {
+        
+        for (let j=0; j<array1.length; j++) {
+            
+            if(array2[i] == array1[j]) {
+                result.push(array2[i])
+                break; //esce dal ciclo interno una volta trovato
+            }
         }
     }
-    console.log(indovinati);
-    
-    answer_form.style.display = "none"
-})
+    return result
+}
+
