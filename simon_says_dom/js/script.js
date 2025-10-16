@@ -19,31 +19,33 @@ Immaginate la logica come fosse uno snack: "Dati 2 array di numeri, indica quali
 
 const countdownEl = document.getElementById("countdown")
 const instructions = document.getElementById("instructions")
-const randomEl = document.getElementById("number-list")
+const randomEl = document.getElementById("numbers-list")
 const answer_form = document.getElementById("answers-form")
 let counter = 3 
 
 const pc_number = [] //array per inserire i numeri generati random
 
 document.addEventListener("click", function() {
+    
+    //creo i numeri e li inserisco nell'array
+    for(let i=0; i<5; i++) {
+        const random_number = Math.floor(Math.random() * 100 + 1)
+        pc_number.push(random_number)
+
+    //inserisco i numeri nell'html per visualizzarli in pagina
+    let li = document.createElement("li")
+    li.innerText = random_number
+    randomEl.append(li)
+
+    }
+
     instructions.style.display = "none"
-    countdownEl.innerHTML = counter--;
     
     //imposto countdown
     const clock = setInterval( () => {
-    
-    console.log(counter, countdownEl);
-    countdownEl.innerHTML = counter
 
-    if(counter == 0) {
-        clearInterval(clock)
-        countdownEl.innerHTML = ''
-    }
-    else {
-        counter--;
-        
-    }
+    randomEl.innerHTML = ''
 
-    }, 1000) 
+    }, 3000) 
 
 })
