@@ -23,14 +23,14 @@ const randomEl = document.getElementById("numbers-list")
 const answer_form = document.getElementById("answers-form")
 let counter = 3 
 
-const pc_number = [] //array per inserire i numeri generati random
+const pc_numbers = [] //array per inserire i numeri generati random
 
-document.addEventListener("click", function() {
+instructions.addEventListener("click", function() {
     
     //creo i numeri e li inserisco nell'array
     for(let i=0; i<5; i++) {
         const random_number = Math.floor(Math.random() * 100 + 1)
-        pc_number.push(random_number)
+        pc_numbers.push(random_number)
 
     //inserisco i numeri nell'html per visualizzarli in pagina
     let li = document.createElement("li")
@@ -38,6 +38,7 @@ document.addEventListener("click", function() {
     randomEl.append(li)
 
     }
+
     //faccio scomparire le istruzioni dallo schermo
     instructions.style.display = "none"
     
@@ -51,4 +52,19 @@ document.addEventListener("click", function() {
     answer_form.classList.remove("d-none")
     }, 3000)
 
+})
+
+answer_form.addEventListener("submit", function() {
+    event.preventDefault() //evito il refresh della pagina
+
+
+    const array = document.querySelectorAll(".form-control")
+    const numbers_array = []
+    for(let i=0; i<array.length; i++) { 
+    
+        numbers_array.push(array[i].value)
+    }
+
+    
+    
 })
