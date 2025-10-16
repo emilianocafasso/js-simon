@@ -38,14 +38,17 @@ document.addEventListener("click", function() {
     randomEl.append(li)
 
     }
-
+    //faccio scomparire le istruzioni dallo schermo
     instructions.style.display = "none"
     
     //imposto countdown
-    const clock = setInterval( () => {
-
+    setTimeout( () => {
+    
+    //svuoto i numeri
     randomEl.innerHTML = ''
 
-    }, 3000) 
+    //mostro il form
+    answer_form.classList.remove("d-none")
+    }, 3000)
 
 })
